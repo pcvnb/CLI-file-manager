@@ -1,16 +1,20 @@
 import {homedir} from "os";
 import {fileURLToPath} from "url";
-import * as readline from 'node:readline/promises';
-import {handleOsOperation} from "./osOperations/handleOsOperation.js";
-import {handleNavigation} from "./navigation/handleNavigation.js";
-import {handleFileOperations} from "./fileOperations/handleFileOperations.js";
-import {handleCompressing} from "./compressing/handleCompressing.js";
-import {hash} from "./hash/hash.js";
 
-const navigationCommands = ['ls','up','cd']
-const compressingCommands = ['compress', 'decompress']
-const fileOperationCommands = ['cat', 'add', 'rn', 'cp', 'mv', 'rm']
-const osOperationCommands = ['eol', 'cpus', 'homedir', 'username', 'architecture'];
+import * as readline from 'node:readline/promises';
+import {hash} from "./hash/hash.js";
+import {
+    compressingCommands,
+    fileOperationCommands,
+    navigationCommands,
+    osOperationCommands
+} from "./constants.js";
+import {
+    handleCompressing,
+    handleFileOperations,
+    handleNavigation,
+    handleOsOperation
+} from "./handlers.js";
 
 const rl = readline.createInterface({
     input: process.stdin,
