@@ -3,18 +3,7 @@ import {fileURLToPath} from "url";
 
 import * as readline from 'node:readline/promises';
 import {hash} from "./hash/hash.js";
-import {
-    compressingCommands,
-    fileOperationCommands,
-    navigationCommands,
-    osOperationCommands
-} from "./constants.js";
-import {
-    handleCompressing,
-    handleFileOperations,
-    handleNavigation,
-    handleOsOperation
-} from "./handlers.js";
+import {COMMANDS, HANDLERS} from "./constants.js";
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -34,22 +23,22 @@ const task = async () => {
     console.log(`Welcome to the File Manager, ${username}`)
     while (!isFinished) {
         console.log('You are currently in ', currentDirectory)
-        const answer = await rl.question('What do you think of Node.js? ');
+        const command = await rl.question('What do you think of Node.js? ');
         // const commandParts = answer.split(' ')
 
-        if (osOperationCommands.includes(answer)) {
+        if (COMMANDS.osOperations.includes(command)) {
             // if (commandParts.length > 2) return
-            handleOsOperation(answer)
-        } else if (navigationCommands.includes(answer)){
-            await handleNavigation(answer, currentDirectory, changeCurrentDirectory)
-        } else if (answer === 'hash') {
+            await HANDLERS.fileOperations(command)
+        } else if (COMMANDS.navigation.includes(command)){
+            await HANDLERS.navigation(command, currentDirectory, changeCurrentDirectory)
+        } else if (command === 'hash') {
             console.log(await hash())
-        } else if (compressingCommands.includes(answer)) {
-            handleCompressing(answer)
-        } else if (answer === '.exit') {
+        } else if (COMMANDS.compressing.includes(command)) {
+            HANDLERS.compressing(command)
+        } else if (command === '.exit') {
             isFinished = true;
-        } else if (fileOperationCommands.includes(answer)) {
-            await handleFileOperations(answer)
+        } else if (COMMANDS.fileOperations.includes(command)) {
+            await HANDLERS.fileOperations(command)
         }
     }
 }
