@@ -1,9 +1,9 @@
 import {compress, decompress} from "./index.js";
 
-export const handleCompressing = (answer) => {
+export const handleCompressing = async (answer) => {
     if (answer === 'compress') {
-        compress()
+        await compress()
     } else if (answer === 'decompress') {
-        decompress()
+        await decompress()
     }
 };
