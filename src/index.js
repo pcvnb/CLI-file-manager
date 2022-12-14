@@ -4,10 +4,9 @@ import {currentPathObject} from "./currentDirectory.js";
 
 const rl = readline.createInterface({
     input: process.stdin,
+    output: process.stdout,
 });
 const username = process.argv[3].split('=')[1]
-// const __filename = fileURLToPath(import.meta.url)
-// const __dirname = path.dirname(__filename);
 
 let isFinished = false;
 
@@ -56,13 +55,14 @@ process.on('SIGINT', () => {
 
 const task = async () => {
     console.log(`Welcome to the File Manager, ${username}`)
+
     while (!isFinished) {
         console.log('You are currently in ', currentPathObject.getCurrentPath())
         // const commandParts = answer.split(' ')
 
-        const command = await rl.question('What do you think of Node.js? ');
-
+        const command = await rl.question('Please write your command below:\n');
         if (command === COMMANDS.exit) {
+            isFinished = true;
             process.exit()
         }
 
