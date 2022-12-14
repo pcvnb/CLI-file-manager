@@ -1,8 +1,6 @@
-import {homedir} from "os";
-import {fileURLToPath} from "url";
-
 import * as readline from 'node:readline/promises';
 import {COMMANDS, HANDLERS} from "./constants.js";
+import {currentPathObject} from "./currentDirectory.js";
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -12,52 +10,61 @@ const username = process.argv[3].split('=')[1]
 // const __dirname = path.dirname(__filename);
 
 let isFinished = false;
-let currentDirectory = homedir()
 
-const changeCurrentDirectory = (newDirectory) => {
-    currentDirectory = newDirectory
-}
 
 const callCommand = async (command) => {
-    if (COMMANDS.osOperations.includes(command)) {
+    const partedCommand = command.split(' ');
+    const commandFirstWord = partedCommand[0]
+    if (COMMANDS.osOperations.includes(commandFirstWord)) {
         // if (commandParts.length > 2) return
-        await HANDLERS.fileOperations(command)
+        await HANDLERS.fileOperations(partedCommand)
         return
     }
 
-    if (COMMANDS.navigation.includes(command)){
-        await HANDLERS.navigation(command, currentDirectory, changeCurrentDirectory)
+    if (COMMANDS.navigation.includes(commandFirstWord)){
+        await HANDLERS.navigation(command)
         return
     }
 
-    if (command === COMMANDS.hash) {
+    if (commandFirstWord === COMMANDS.hash) {
         console.log(HANDLERS.hash())
         return
     }
 
-    if (COMMANDS.compressing.includes(command)) {
+    if (COMMANDS.compressing.includes(commandFirstWord)) {
         await HANDLERS.compressing(command)
         return
     }
 
-    if (COMMANDS.fileOperations.includes(command)) {
+    if (COMMANDS.fileOperations.includes(commandFirstWord)) {
         await HANDLERS.fileOperations(command)
     }
 }
 
+const onExit = () => {
+    console.log(`Thank you for using File Manager, ${username}, goodbye!`)
+}
+process.on('exit', () => {
+    onExit()
+});
+
+process.on('SIGINT', () => {
+    process.exit()
+});
+
 const task = async () => {
     console.log(`Welcome to the File Manager, ${username}`)
     while (!isFinished) {
-        console.log('You are currently in ', currentDirectory)
+        console.log('You are currently in ', currentPathObject.getCurrentPath())
         // const commandParts = answer.split(' ')
 
         const command = await rl.question('What do you think of Node.js? ');
 
         if (command === COMMANDS.exit) {
-            isFinished = true;
-        } else {
-            await callCommand(command)
+            process.exit()
         }
+
+        await callCommand(command)
     }
 }
 
