@@ -1,5 +1,7 @@
-import {hash} from "./hash.js";
+import {getHash} from "./getHash.js";
 
-export const handleHash = async () => {
-    return await hash()
+export const handleHash = async (partedCommand) => {
+    const filePath = partedCommand[1]
+    const hash = await getHash(filePath)
+    return hash
 };

@@ -14,7 +14,8 @@ let isFinished = false;
 
 const callCommand = async (command) => {
     const partedCommand = command.split(' ');
-    const commandFirstWord = partedCommand[0]
+    const commandFirstWord = partedCommand[0];
+
     if (COMMANDS.osOperations.includes(commandFirstWord)) {
         // if (commandParts.length > 2) return
         await HANDLERS.fileOperations(partedCommand)
@@ -27,7 +28,8 @@ const callCommand = async (command) => {
     }
 
     if (commandFirstWord === COMMANDS.hash) {
-        console.log(HANDLERS.hash())
+        const hexHash = await HANDLERS.hash(partedCommand)
+        console.log(hexHash)
         return
     }
 
