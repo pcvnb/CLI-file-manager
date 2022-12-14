@@ -8,7 +8,7 @@ export const COMMANDS = {
     navigation: ['ls','up','cd'],
     compressing: ['compress', 'decompress'],
     fileOperations:['cat', 'add', 'rn', 'cp', 'mv', 'rm'],
-    osOperations: ['eol', 'cpus', 'homedir', 'username', 'architecture'],
+    osOperations: ['os'],
     hash: 'hash',
     exit: '.exit',
 }

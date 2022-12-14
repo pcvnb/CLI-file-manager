@@ -2,23 +2,22 @@ import {EOL, userInfo, arch, cpus} from "os";
 
 
 export const getArchitecture = () => {
-    console.log(arch())
+    return arch()
 };
 
 export const getCpus = () => {
-    console.log(cpus())
+    return cpus()
 };
 
-
 export const getEol = () => {
-    console.log(EOL)
+    return JSON.stringify(EOL)
 };
 
 const currentUserInfo = userInfo()
 export const getHomedir = () => {
-    console.log(currentUserInfo.homedir)
+    return currentUserInfo.homedir
 };
 
 export const getUserName = () => {
-    console.log(currentUserInfo.username)
+    return currentUserInfo.username
 };

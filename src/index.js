@@ -18,7 +18,7 @@ const callCommand = async (command) => {
 
     if (COMMANDS.osOperations.includes(commandFirstWord)) {
         // if (commandParts.length > 2) return
-        await HANDLERS.fileOperations(partedCommand)
+        await HANDLERS.osOperations(partedCommand)
         return
     }
 
