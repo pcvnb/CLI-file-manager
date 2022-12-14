@@ -37,7 +37,7 @@ const callCommand = async (command) => {
     }
 
     if (COMMANDS.fileOperations.includes(commandFirstWord)) {
-        await HANDLERS.fileOperations(command)
+        await HANDLERS.fileOperations(partedCommand)
     }
 }
 
