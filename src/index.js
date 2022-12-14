@@ -22,7 +22,7 @@ const callCommand = async (command) => {
     }
 
     if (COMMANDS.navigation.includes(commandFirstWord)){
-        await HANDLERS.navigation(command)
+        await HANDLERS.navigation(partedCommand)
         return
     }
 
