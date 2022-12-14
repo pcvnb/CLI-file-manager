@@ -32,7 +32,7 @@ const callCommand = async (command) => {
     }
 
     if (COMMANDS.compressing.includes(commandFirstWord)) {
-        await HANDLERS.compressing(command)
+        await HANDLERS.compressing(partedCommand)
         return
     }
 
