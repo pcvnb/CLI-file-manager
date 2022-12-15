@@ -1,4 +1,4 @@
-import {COMMANDS, HANDLERS} from "./constants.js";
+import {COMMANDS, HANDLERS, throwInputError} from "./constants.js";
 
 export const callCommand = async (partedCommand) => {
     const commandFirstWord = partedCommand[0];
@@ -29,4 +29,5 @@ export const callCommand = async (partedCommand) => {
         return
     }
 
+    throwInputError()
 }

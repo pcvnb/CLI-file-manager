@@ -20,3 +20,14 @@ export const HANDLERS = {
     osOperations: handleOsOperation,
     hash: handleHash,
 }
+
+const operationErrorText = 'FS operation failed'
+const inputErrorText = 'Invalid input'
+
+export const throwInputError = () => {
+    throw new Error(inputErrorText)
+}
+
+export const throwOperationError = () => {
+    throw new Error(operationErrorText)
+}

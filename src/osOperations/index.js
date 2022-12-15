@@ -1,5 +1,6 @@
 import {EOL, userInfo, arch, cpus} from "os";
 
+const currentUserInfo = userInfo()
 
 export const getArchitecture = () => {
     return arch()
@@ -13,7 +14,6 @@ export const getEol = () => {
     return JSON.stringify(EOL)
 };
 
-const currentUserInfo = userInfo()
 export const getHomedir = () => {
     return currentUserInfo.homedir
 };
