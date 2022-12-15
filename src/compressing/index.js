@@ -1,16 +1,16 @@
 import {createBrotliCompress, createBrotliDecompress} from "zlib";
 import {createReadStream, createWriteStream} from "fs";
 
-export const compress = async (source, destination) => {
+export const compress = async (sourcePath, destinationPath) => {
     const brotliCompress = createBrotliCompress();
-    const filePath = createReadStream(source);
-    const zippedFilePath = createWriteStream(destination);
-    await filePath.pipe(brotliCompress).pipe(zippedFilePath) //обернуть в промис
+    const filePath = createReadStream(sourcePath);
+    const zippedFilePath = createWriteStream(destinationPath);
+    await filePath.pipe(brotliCompress).pipe(zippedFilePath)
 };
 
-export const decompress = async (source, destination) => {
-    const zippedFilePath = createReadStream(source);
-    const unzippedFilePath = createWriteStream(destination);
+export const decompress = async (sourcePath, destinationPath) => {
+    const zippedFilePath = createReadStream(sourcePath);
+    const unzippedFilePath = createWriteStream(destinationPath);
     const brotliDecompress = createBrotliDecompress();
     await zippedFilePath.pipe(brotliDecompress).pipe(unzippedFilePath)
 };

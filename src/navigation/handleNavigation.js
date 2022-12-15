@@ -15,6 +15,9 @@ export const handleNavigation = async (partedCommand) => {
     }
 
     if (commandType === 'cd') {
+        if (!pathToFile) {
+            throwOperationError()
+        }
         const newPath = cd(pathToFile)
         const doesNewPathExist = await doesPathExist(newPath)
 

@@ -8,3 +8,23 @@ export const doesPathExist = async (path) => {
         return false;
     }
 }
+
+export const promisifiedPipe = (source, destination) => {
+    return new Promise((resolve)=>{
+        source.on('end',()=>{
+            resolve();
+        }).pipe(destination)
+    });
+}
+
+export const getDoAllPathsExist = async (paths) => {
+    const [pathsExist] = await Promise.all(paths.map(doesPathExist));
+
+    for (const doPathExist of pathsExist) {
+        if (!doPathExist) {
+            return false
+        }
+    }
+
+    return true
+}

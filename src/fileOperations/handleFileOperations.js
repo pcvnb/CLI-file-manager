@@ -1,7 +1,11 @@
 import {cat, mv, add, cp, rm, rn} from "./index.js";
+import {throwOperationError} from "../constants.js";
 
 export const handleFileOperations = async (partedCommand) => {
     const [commandType, pathToFile, newPath] = partedCommand;
+    if (!pathToFile) {
+        throwOperationError()
+    }
 
     if (commandType === 'cat') {
         await cat(pathToFile)

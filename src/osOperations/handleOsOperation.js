@@ -1,4 +1,5 @@
 import {getArchitecture, getCpus, getEol, getHomedir, getUserName} from "./index.js";
+import {throwInputError} from "../constants.js";
 
 export const handleOsOperation = (partedCommand) => {
     const requiredInfo = partedCommand[1]
@@ -12,5 +13,7 @@ export const handleOsOperation = (partedCommand) => {
         console.log(getUserName())
     } else if (requiredInfo === '--architecture') {
         console.log(getArchitecture())
+    } else {
+        throwInputError()
     }
 };
