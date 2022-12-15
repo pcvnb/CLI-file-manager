@@ -2,7 +2,7 @@ import {appendFile} from "fs/promises";
 import path from "path";
 import {createReadStream, createWriteStream, rm as remove} from "fs";
 import {rename} from "fs/promises";
-import {currentPathObject} from "../currentDirectory.js";
+import {currentPathObject} from "../currentPathObject.js";
 
 
 export const cat = async (path) => {

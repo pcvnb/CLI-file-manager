@@ -1,5 +1,5 @@
 import path from "path";
-import {currentPathObject} from "../currentDirectory.js";
+import {currentPathObject} from "../currentPathObject.js";
 
 export const cd = (newPath) => {
     if (path.isAbsolute(newPath)) {

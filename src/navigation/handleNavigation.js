@@ -1,7 +1,7 @@
 import {ls} from "./ls.js";
 import {up} from "./up.js";
 import {cd} from "./cd.js";
-import {currentPathObject} from "../currentDirectory.js";
+import {currentPathObject} from "../currentPathObject.js";
 
 export const handleNavigation = async (partedCommand) => {
     const [commandType, pathToFile] = partedCommand;
