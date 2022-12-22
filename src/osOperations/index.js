@@ -7,7 +7,12 @@ export const getArchitecture = () => {
 };
 
 export const getCpus = () => {
-    return cpus()
+    const cpusInfo = cpus();
+    const fixedInfo = cpusInfo.map(cpu => ({
+        model: cpu.model,
+        clockRate: cpu.model.split(' ').find(elem => elem.endsWith('GHz'))
+    }))
+    return fixedInfo
 };
 
 export const getEol = () => {

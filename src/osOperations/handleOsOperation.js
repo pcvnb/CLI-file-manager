@@ -6,7 +6,9 @@ export const handleOsOperation = (partedCommand) => {
     if (requiredInfo === '--EOL') {
         console.log(getEol())
     } else if (requiredInfo === '--cpus') {
-        console.log(getCpus())
+        const cpusData = getCpus()
+        console.table(cpusData)
+        console.log(`Overall amount of CPUS: ${cpusData.length}`)
     } else if (requiredInfo === '--homedir') {
         console.log(getHomedir())
     } else if (requiredInfo === '--username') {
