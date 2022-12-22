@@ -3,7 +3,7 @@ import {throwInputError} from "../constants.js";
 
 export const handleOsOperation = (partedCommand) => {
     const requiredInfo = partedCommand[1]
-    if (requiredInfo === '--eol') {
+    if (requiredInfo === '--EOL') {
         console.log(getEol())
     } else if (requiredInfo === '--cpus') {
         console.log(getCpus())
