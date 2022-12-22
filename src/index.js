@@ -10,7 +10,8 @@ const rl = readline.createInterface({
 
 let isFinished = false;
 
-const username = process.argv[3].split('=')[1]
+const username = process.argv.find(item => item.startsWith('--username')).split('=')[1]
+
 const onExit = () => {
     console.log(`Thank you for using File Manager, ${username}, goodbye!`)
 }
