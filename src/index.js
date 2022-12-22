@@ -37,7 +37,11 @@ const task = async () => {
             process.exit()
         }
 
-        await callCommand(partedCommand)
+        try {
+            await callCommand(partedCommand)
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 }
 
